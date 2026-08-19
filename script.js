@@ -128,7 +128,7 @@ if (heroSection) {
 
 // ===== FORM → GOOGLE SHEETS + REDIRECT =====
 // ⚠️ THAY URL BÊN DƯỚI BẰNG URL WEB APP CỦA BẠN
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/PASTE_YOUR_WEB_APP_URL_HERE/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxz5ZSuUNLOjnNNVAXdpuO1feuOWyQ5DIuwIoGDZT41XmmFqY5SZG6llxwmBpIlqg/exec";
 
 const registrationForm = document.getElementById('registrationForm');
 if (registrationForm) {
