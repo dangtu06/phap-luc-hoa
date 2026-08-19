@@ -127,7 +127,7 @@ if (heroSection) {
 }
 
 // ===== FORM → GOOGLE SHEETS (Hidden Form + Iframe) =====
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxz5ZSuUNLOjnNNVAXdpuO1feuOWyQ5DIuwIoGDZT41XmmFqY5SZG6llxwmBpIlqg/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx69zf8V75yycRKw9Lif5Kzqev8hBMWpUfEF_c42LKv51pLw4airD05He7Q--SvD3yX/exec";
 
 // Tạo hidden iframe để nhận response (tránh chuyển trang khi submit)
 const hiddenIframe = document.createElement('iframe');
