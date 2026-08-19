@@ -155,11 +155,11 @@ if (registrationForm) {
     submitBtn.disabled = true;
     submitBtn.style.opacity = '0.7';
 
-    // POST lên Google Sheets
+    // POST lên Google Sheets (text/plain để tương thích CORS)
     fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
       mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify({
         ho: data.ho,
         ten: data.ten,
