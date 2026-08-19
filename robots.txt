@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dangtu06.github.io/phap-luc-hoa/sitemap.xml
