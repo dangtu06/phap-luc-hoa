@@ -126,9 +126,15 @@ if (heroSection) {
   heroObserver.observe(heroSection);
 }
 
-// ===== FORM → GOOGLE SHEETS + REDIRECT =====
-// ⚠️ THAY URL BÊN DƯỚI BẰNG URL WEB APP CỦA BẠN
+// ===== FORM → GOOGLE SHEETS (Hidden Form + Iframe) =====
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxz5ZSuUNLOjnNNVAXdpuO1feuOWyQ5DIuwIoGDZT41XmmFqY5SZG6llxwmBpIlqg/exec";
+
+// Tạo hidden iframe để nhận response (tránh chuyển trang khi submit)
+const hiddenIframe = document.createElement('iframe');
+hiddenIframe.name = 'plh_hidden_iframe';
+hiddenIframe.id = 'plh_hidden_iframe';
+hiddenIframe.style.display = 'none';
+document.body.appendChild(hiddenIframe);
 
 const registrationForm = document.getElementById('registrationForm');
 if (registrationForm) {
@@ -155,36 +161,39 @@ if (registrationForm) {
     submitBtn.disabled = true;
     submitBtn.style.opacity = '0.7';
 
-    // POST lên Google Sheets (text/plain để tương thích CORS)
-    fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({
-        ho: data.ho,
-        ten: data.ten,
-        email: data.email,
-        phone: data.phone,
-        linhvuc: data.linhvuc || "",
-        message: data.message || ""
-      })
-    })
-    .then(function() {
-      // Thành công → chuyển trang cảm ơn
-      window.location.href = "thank-you.html";
-    })
-    .catch(function(err) {
-      console.error("Lỗi gửi form:", err);
-      // Với no-cors, request thường vẫn gửi thành công
-      // nên vẫn chuyển trang
-      showNotification('🪷 Đăng ký thành công! Đang chuyển trang...', 'success');
-      setTimeout(function() { window.location.href = "thank-you.html"; }, 1500);
-    })
-    .finally(function() {
-      submitBtn.innerHTML = originalText;
-      submitBtn.disabled = false;
-      submitBtn.style.opacity = '1';
-    });
+    // Tạo hidden form gửi vào iframe (bypass CORS hoàn toàn)
+    const hiddenForm = document.createElement('form');
+    hiddenForm.method = 'POST';
+    hiddenForm.action = GOOGLE_SCRIPT_URL;
+    hiddenForm.target = 'plh_hidden_iframe'; // Gửi vào iframe, không chuyển trang
+    hiddenForm.style.display = 'none';
+
+    // Thêm các field vào hidden form
+    const fields = {
+      ho: data.ho,
+      ten: data.ten,
+      email: data.email,
+      phone: data.phone,
+      linhvuc: data.linhvuc || '',
+      message: data.message || ''
+    };
+
+    for (const [key, value] of Object.entries(fields)) {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      hiddenForm.appendChild(input);
+    }
+
+    document.body.appendChild(hiddenForm);
+    hiddenForm.submit();
+
+    // Dọn dẹp + chuyển trang sau 2 giây
+    setTimeout(function() {
+      document.body.removeChild(hiddenForm);
+      window.location.href = 'thank-you.html';
+    }, 2000);
   });
 }
 
