@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng Ký Thành Công – Pháp Lục Hoà</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px 16px;
+  background:linear-gradient(160deg,#3D2E12 0%,#5E4A1C 40%,#8B6914 100%);
+  position:relative;
+  overflow-x:hidden;
+}
+
+/* Subtle decorative circles */
+body::before{
+  content:'';position:absolute;top:-120px;right:-80px;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,160,23,.12),transparent 70%);
+}
+body::after{
+  content:'';position:absolute;bottom:-100px;left:-60px;
+  width:350px;height:350px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,204,51,.1),transparent 70%);
+}
+
+.ty-wrap{max-width:520px;width:100%;position:relative;z-index:1}
+
+/* ===== CHECKMARK ===== */
+.ty-check-area{text-align:center;margin-bottom:32px}
+
+.ty-check-ring{
+  position:relative;display:inline-block;
+}
+.ty-check-ring .pulse{
+  position:absolute;inset:-10px;border-radius:50%;
+  border:3px solid rgba(212,160,23,.4);
+  animation:tyPulse 2s ease-out infinite;
+}
+.ty-check-circle{
+  width:80px;height:80px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#D4A017,#B8860B);
+  box-shadow:0 8px 32px rgba(212,160,23,.4);
+  animation:tyPopIn .5s cubic-bezier(.175,.885,.32,1.275) forwards;
+}
+.ty-check-circle svg{width:40px;height:40px;color:#fff}
+
+.ty-check-text{
+  color:#FFD966;font-weight:600;margin-top:16px;
+  font-size:.85rem;letter-spacing:2px;text-transform:uppercase;
+}
+
+/* ===== MAIN CARD ===== */
+.ty-card{
+  background:#fff;border-radius:24px;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+  overflow:hidden;
+}
+
+/* Card header */
+.ty-card-header{
+  background:linear-gradient(135deg,#5E4A1C,#8B6914,#D4A017);
+  padding:32px;text-align:center;
+}
+.ty-card-header h1{
+  font-family:'Playfair Display',serif;
+  color:#fff;font-size:1.65rem;font-weight:700;line-height:1.35;
+  animation:tyFadeIn .5s ease .1s both;
+}
+.ty-card-header h1 br{display:block}
+
+/* Card body */
+.ty-card-body{padding:32px}
+
+/* ===== ZALO CTA CARD ===== */
+.ty-zalo{
+  background:linear-gradient(135deg,#FFF9E6,#FFF0BF);
+  border:2px solid #D4A017;border-radius:20px;
+  padding:28px 24px;margin-bottom:32px;text-align:center;
+  animation:tyFadeUp .6s ease .4s both;
+}
+.ty-zalo-icon{
+  width:56px;height:56px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 16px;
+  background:#D4A017;box-shadow:0 4px 16px rgba(212,160,23,.3);
+}
+.ty-zalo-icon svg{width:30px;height:30px}
+.ty-zalo h2{
+  font-family:'Playfair Display',serif;
+  color:#3D2E12;font-size:1.25rem;font-weight:700;margin-bottom:6px;
+}
+.ty-zalo p{color:#8B7755;font-size:.95rem;margin-bottom:20px}
+
+.ty-btn-zalo{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:16px 24px;border-radius:16px;border:none;
+  background:linear-gradient(135deg,#D4A017,#B8860B);
+  color:#fff;font-size:1.05rem;font-weight:800;
+  font-family:inherit;cursor:pointer;
+  box-shadow:0 4px 24px rgba(212,160,23,.4);
+  transition:all .3s ease;text-decoration:none;
+}
+.ty-btn-zalo:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 32px rgba(212,160,23,.6);
+}
+.ty-btn-zalo svg{width:22px;height:22px;fill:currentColor}
+
+/* ===== STEPS ===== */
+.ty-steps{margin-bottom:28px;animation:tyFadeIn .5s ease .55s both}
+.ty-steps-label{
+  color:#8B7755;font-size:.8rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;
+}
+.ty-step{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+.ty-step:last-child{margin-bottom:0}
+.ty-step-num{
+  width:36px;height:36px;min-width:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#3D2E12,#5E4A1C);
+  color:#FFD966;font-weight:800;font-size:.85rem;
+}
+.ty-step-title{font-weight:600;color:#3D2E12;font-size:.95rem;margin-bottom:2px}
+.ty-step-desc{color:#8B7755;font-size:.85rem;line-height:1.5}
+
+/* ===== WARNING ===== */
+.ty-warning{
+  background:#FFF9E6;border:1px solid #FFD966;border-radius:14px;
+  padding:16px;margin-bottom:24px;display:flex;align-items:flex-start;gap:12px;
+  animation:tyFadeIn .5s ease .7s both;
+}
+.ty-warning-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px}
+.ty-warning p{color:#5E4A1C;font-size:.85rem;font-weight:500;line-height:1.6}
+
+/* ===== BACK LINK ===== */
+.ty-back{
+  text-align:center;animation:tyFadeIn .5s ease .8s both;
+}
+.ty-back a{
+  color:#B09A6F;font-size:.85rem;text-decoration:none;
+  transition:color .2s;
+}
+.ty-back a:hover{color:#D4A017}
+
+/* ===== FOOTER ===== */
+.ty-footer{
+  text-align:center;margin-top:20px;
+  color:rgba(255,217,102,.45);font-size:.75rem;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes tyPopIn{
+  from{transform:scale(0);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+@keyframes tyPulse{
+  0%{transform:scale(1);opacity:.7}
+  100%{transform:scale(1.6);opacity:0}
+}
+@keyframes tyFadeUp{
+  from{transform:translateY(20px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+@keyframes tyFadeIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:480px){
+  .ty-card-header{padding:24px 20px}
+  .ty-card-header h1{font-size:1.35rem}
+  .ty-card-body{padding:24px 20px}
+  .ty-zalo{padding:22px 18px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="ty-wrap">
+
+  <!-- ✅ Checkmark animation -->
+  <div class="ty-check-area">
+    <div class="ty-check-ring">
+      <div class="pulse"></div>
+      <div class="ty-check-circle">
+        <svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+    </div>
+    <p class="ty-check-text">🪷 Đăng ký thành công</p>
+  </div>
+
+  <!-- Main card -->
+  <div class="ty-card">
+
+    <!-- Card header -->
+    <div class="ty-card-header">
+      <h1>Còn một bước quan trọng<br>nữa cần làm</h1>
+    </div>
+
+    <!-- Card body -->
+    <div class="ty-card-body">
+
+      <!-- Zalo CTA -->
+      <div class="ty-zalo">
+        <div class="ty-zalo-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="24" cy="24" rx="22" ry="22" fill="white" opacity="0.2"/>
+            <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="18" font-weight="bold" font-family="Arial, sans-serif">Za</text>
+          </svg>
+        </div>
+        <h2>Tham gia nhóm Zalo</h2>
+        <p>để nhận tài liệu Pháp Lục Hoà và lịch Zoom</p>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="ty-btn-zalo">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg>
+          Vào Nhóm Zalo Ngay
+        </a>
+      </div>
+
+      <!-- Steps -->
+      <div class="ty-steps">
+        <p class="ty-steps-label">Sau khi vào nhóm bạn sẽ nhận được:</p>
+
+        <div class="ty-step">
+          <div class="ty-step-num">1</div>
+          <div>
+            <p class="ty-step-title">Tài liệu Pháp Lục Hoà</p>
+            <p class="ty-step-desc">Được gửi trực tiếp vào nhóm Zalo</p>
+          </div>
+        </div>
+
+        <div class="ty-step">
+          <div class="ty-step-num">2</div>
+          <div>
+            <p class="ty-step-title">Lịch Zoom từ tâm chính thức</p>
+            <p class="ty-step-desc">Link &amp; thời gian buổi chia sẻ cụ thể</p>
+          </div>
+        </div>
+
+        <div class="ty-step">
+          <div class="ty-step-num">3</div>
+          <div>
+            <p class="ty-step-title">Nhắc nhở trước buổi Zoom</p>
+            <p class="ty-step-desc">Thông báo 24h và 1h trước khi bắt đầu</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warning -->
+      <div class="ty-warning">
+        <span class="ty-warning-icon">⚠️</span>
+        <p>Nếu bạn không vào nhóm Zalo, chúng tôi sẽ không thể gửi lịch Zoom và tài liệu Pháp Lục Hoà đến bạn.</p>
+      </div>
+
+      <!-- Back link -->
+      <div class="ty-back">
+        <a href="ladipage.html">← Quay lại trang chính</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <p class="ty-footer">☸ Pháp Lục Hoà — Sáu Phép Hoà Kính</p>
+
+</div>
+
+</body>
+</html>
